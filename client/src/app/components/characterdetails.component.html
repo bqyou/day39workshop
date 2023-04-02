@@ -1,0 +1,24 @@
+<mat-card *ngIf="character">
+    <mat-card-header>
+        <mat-card-title-group>
+            <mat-card-title>{{character.name}}</mat-card-title>
+            <mat-card-subtitle><button mat-raised-button type="button" (click)="addComment()">Add Comment</button></mat-card-subtitle>
+            <form [formGroup]="form">
+            <mat-form-field *ngIf="(comment)" appearance="fill">
+                <mat-label>Comment</mat-label>
+                <input matInput matTextareaAutosize rows="5" formControlName="comment">
+                <button mat-raised-button type="button" (click)="postComment()">Submit</button>
+            </mat-form-field>
+            </form>
+            <img mat-card-lg-image src="{{character.imageUrl}}">
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+        {{character.description}}
+    </mat-card-content>
+</mat-card>
+<mat-nav-list>
+    <a mat-list-item *ngFor="let c of comments">
+        {{c?.comment}}
+    </a>
+</mat-nav-list>
